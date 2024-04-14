@@ -5,9 +5,9 @@ public class MapPracticeApp {
         final String SOUGHT_HAND = "FLUSH";
         FileService fileService = new FileService();
         List<String> pokerHandList = fileService.populateSet(new ArrayList<>());
-        pokerHandList = fileService.populateSet(pokerHandList);
         Map<String, Integer> pokerMap = new HashMap<>();
         for(String line:pokerHandList){
+            System.out.println(line);
             String player = line.split(",")[0];
             String hand = line.split(",")[1];
             if(pokerMap.containsKey(player)){
@@ -22,11 +22,15 @@ public class MapPracticeApp {
                 else{
                     pokerMap.put(player,0);
                 }
-
             }
-
-
+            System.out.println(pokerMap);
         }
+        pokerMap.put("Zordon", pokerMap.get("Rita Repulsa"));
+        pokerMap.remove("Rita Repulsa");
+        System.out.println(pokerMap);
+        pokerMap.compute("He Man", (k, v) -> v+1);
+        System.out.println(pokerMap);
+        pokerMap.remove("He Man");
         System.out.println(pokerMap);
     }
 }
